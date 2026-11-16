@@ -4,6 +4,10 @@
 
 当前版本 **0.15.16**。
 
+## 下载
+
+前往 [Releases](https://github.com/2707709621/light-music/releases/latest) 下载 Windows x64 版本。ZIP 包包含 EXE 与许可文件，运行环境见下文。
+
 ## 功能
 
 - 支持 QQ 音乐、网易云音乐、酷狗音乐账号与音乐源切换。
