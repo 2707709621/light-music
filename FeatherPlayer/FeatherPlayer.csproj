@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>light music</AssemblyName>
+    <RootNamespace>FeatherPlayer</RootNamespace>
+    <Version>0.15.16</Version>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- Framework-dependent single file: relies on the installed .NET 10 Desktop Runtime
+         instead of embedding the whole runtime (~78 MiB -> a few MiB). -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <ApplicationIcon>Assets/feather.ico</ApplicationIcon>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Optimize>true</Optimize>
+    <!-- This is a WPF application; its manifest owns DPI awareness. WinForms is used for the tray only. -->
+    <NoWarn>$(NoWarn);WFO0003</NoWarn>
+    <!-- Stale intermediate output from earlier artifact-path builds must never enter the default Compile glob. -->
+    <DefaultItemExcludes>$(DefaultItemExcludes);artifacts\**;obj\**;bin\**</DefaultItemExcludes>
+  </PropertyGroup>
+  <ItemGroup><PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" /></ItemGroup>
+  <ItemGroup><EmbeddedResource Include="../THIRD-PARTY-NOTICES.md" Link="THIRD-PARTY-NOTICES.md" /></ItemGroup>
+  <ItemGroup><EmbeddedResource Include="Native/LightMusicTaskbar.dll" LogicalName="FeatherPlayer.Native.LightMusicTaskbar.dll" /></ItemGroup>
+  <Target Name="BuildTaskbarStyle" BeforeTargets="BeforeBuild" Inputs="Native/TaskbarStyle.cpp;Native/SpectrumCapture.cpp;Native/TaskbarStyle.def;Native/build.cmd" Outputs="Native/LightMusicTaskbar.dll">
+    <Exec Command="&quot;$(MSBuildProjectDirectory)\Native\build.cmd&quot;" />
+  </Target>
+<ItemGroup><ProjectReference Include="../LightSuite.Windows/LightSuite.Windows.csproj" /></ItemGroup><ItemGroup><PackageReference Include="QRCoder" Version="1.8.0" /></ItemGroup></Project>
+
