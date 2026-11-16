@@ -1,0 +1,6 @@
+EXPORTS
+    DllGetClassObject PRIVATE
+    InitializeLightTaskbar
+    StartLightSpectrum
+    ReadLightSpectrum
+    StopLightSpectrum
