@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+ <PropertyGroup><TargetFramework>net10.0-windows</TargetFramework><UseWPF>true</UseWPF><UseWindowsForms>true</UseWindowsForms><Nullable>enable</Nullable><AssemblyName>LightSuite.Windows</AssemblyName></PropertyGroup>
+ <ItemGroup><PackageReference Include="MaterialColorUtilities" Version="0.3.0"/><InternalsVisibleTo Include="light music"/><InternalsVisibleTo Include="light drive"/><EmbeddedResource Include="Native/LightSuiteMenu.dll" LogicalName="LightSuite.Menu.dll"/></ItemGroup>
+ <Target Name="BuildNativeMenu" BeforeTargets="BeforeBuild" Inputs="Native/MenuSurface.cpp;Native/build.cmd" Outputs="Native/LightSuiteMenu.dll"><Exec Command="&quot;$(MSBuildProjectDirectory)\Native\build.cmd&quot;"/></Target>
+</Project>
